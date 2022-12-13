@@ -1,0 +1,42 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @upper on FIELD_DEFINITION
+
+"""recipe """
+type Recipe {
+  id: ID!
+  title: String!
+  description: String
+  creationDate: DateTime
+  ingredients: [String!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  recipe(id: String!): Recipe!
+  recipes(skip: Int = 0, take: Int = 25): [Recipe!]!
+}
+
+type Mutation {
+  addRecipe(body: RecipeInput!): Recipe!
+  updateRecipe(id: String!, body: RecipeInput!): Recipe!
+  removeRecipe(id: String!): Recipe!
+}
+
+input RecipeInput {
+  title: String!
+  description: String
+  ingredients: [String!]!
+}
+
+type Subscription {
+  recipeAdded: Recipe!
+  recipeUpdated: Recipe!
+  recipeRemoved: Recipe!
+}
